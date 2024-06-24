@@ -23,5 +23,8 @@ if not launch.is_installed("websockets"):
     
 if not launch.is_installed("litelama"):    
     launch.run_pip("install litelama==0.1.7")
-    
-download_file('https://hf-mirror.com/anyisalin/big-lama/resolve/main/big-lama.safetensors?download=true', './models/big-lama.safetensors')
+
+PROJECT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".")
+model_path = os.path.join(PROJECT_PATH, "./models/big-lama.safetensors")
+
+download_file('https://hf-mirror.com/anyisalin/big-lama/resolve/main/big-lama.safetensors?download=true', model_path)
