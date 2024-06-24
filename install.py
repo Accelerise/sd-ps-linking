@@ -3,6 +3,8 @@ import requests
 import os
 
 def download_file(url, path):
+    if os.path.exists(path) and os.path.isfile(path):
+        return
 
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
@@ -12,8 +14,6 @@ def download_file(url, path):
                     f.write(chunk)
         except Exception as e:
             f.close()
-            if os.path.exists(path) and os.path.isfile(path):
-                os.remove(path)
             raise e
 
 # TODO: add pip dependency if need extra module only on extension
